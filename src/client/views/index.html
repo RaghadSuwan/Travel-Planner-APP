@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journey Planner - Explore with Raghad</title>
+</head>
+<body>
+    <header>
+        <!-- Header section with the app name -->
+        <div class="header-text">
+            <h1>Your Next Adventure Awaits!</h1>
+            <p>Plan your journey effortlessly with the Journey Planner</p>
+        </div>
+    </header>
+
+    <main>
+        <section class="trip-planner">
+            <section class="form-section">
+                <!-- Form for user input -->
+                <div class="input-fields">
+                    <label for="place"><strong>Destination:</strong></label>
+                    <input id="place" type="text" name="place" placeholder="Where would you like to go?" />
+                    <br /><br />
+                    <label for="date"><strong>Departure Date:</strong></label>
+                    <input id="date" type="date" name="date" />
+                </div>
+
+                <div class="note-section">
+                    <label for="note"><strong>Notes:</strong></label>
+                    <textarea id="note" placeholder="Add any specific notes for your journey..." rows="5"></textarea>
+                </div>
+
+                <div class="action-buttons">
+                    <button id="submit-btn">Save My Journey</button>
+                </div>
+            </section>
+
+            <section id="saved-trips">
+                <div class="trips-header">
+                    <strong>Your Planned Journeys</strong>
+                </div>
+                <div id="trip-results">
+                    <!-- Saved trips will appear here dynamically -->
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <footer>
+        <!-- Footer section with a personal touch -->
+        <p>Crafted with care by <a href="https://www.linkedin.com/in/raghad-suwan/">Raghad Suwan</a> | Happy Travels!</p>
+    </footer>
+
+    <script>
+        // Register the service worker for offline capabilities
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(reg => console.log("Service Worker registered successfully:", reg))
+                    .catch(err => console.error("Service Worker registration failed:", err));
+            });
+        }
+    </script>
+</body>
+
+</html>
