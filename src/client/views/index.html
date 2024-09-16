@@ -1,49 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Journey Planner - Explore with Raghad</title>
+    <title>Travel Planner</title>
 </head>
+
 <body>
     <header>
         <!-- Header section with the app name -->
         <div class="header-text">
             <h1>Your Next Adventure Awaits!</h1>
-            <p>Plan your journey effortlessly with the Journey Planner</p>
+            <p>Plan your journey effortlessly with the Travel Planner</p>
         </div>
     </header>
 
     <main>
-        <section class="trip-planner">
-            <section class="form-section">
-                <!-- Form for user input -->
-                <div class="input-fields">
-                    <label for="place"><strong>Destination:</strong></label>
-                    <input id="place" type="text" name="place" placeholder="Where would you like to go?" />
-                    <br /><br />
-                    <label for="date"><strong>Departure Date:</strong></label>
-                    <input id="date" type="date" name="date" />
-                </div>
+        <div class="container">
+            <form id="myForm" method="post">
+                <label for="location"><strong>Enter a Location:</strong></label>
+                <input type="text" id="location" name="location" placeholder="Enter a city name" required />
+                <br /><br />
 
-                <div class="note-section">
-                    <label for="note"><strong>Notes:</strong></label>
-                    <textarea id="note" placeholder="Add any specific notes for your journey..." rows="5"></textarea>
-                </div>
+                <label for="date"><strong>Departure Date:</strong></label>
+                <input type="date" id="date" name="date" />
+                <br /><br />
 
-                <div class="action-buttons">
-                    <button id="submit-btn">Save My Journey</button>
-                </div>
-            </section>
+                <label for="note"><strong>Notes:</strong></label>
+                <textarea id="note" name="note" placeholder="Add any specific notes for your journey..." rows="5"></textarea>
+                <br /><br />
 
-            <section id="saved-trips">
-                <div class="trips-header">
-                    <strong>Your Planned Journeys</strong>
-                </div>
-                <div id="trip-results">
-                    <!-- Saved trips will appear here dynamically -->
-                </div>
-            </section>
+                <button type="submit">Get Info</button>
+            </form>
+        </div>
+
+        <div id="error" style="display: none;"></div>
+        <div id="results">
+            <h2>Results:</h2>
+            <div id="loader" style="display: none;">Loading...</div>
+            <ul id="resultsList">
+                <li id="weather"></li>
+                <li id="image"></li>
+            </ul>
+        </div>
+
+        <section id="saved-trips">
+            <div class="trips-header">
+                <strong>Your Planned Journeys</strong>
+            </div>
+            <div id="trip-results">
+                <!-- Saved trips will appear here dynamically -->
+            </div>
         </section>
     </main>
 
@@ -52,16 +60,8 @@
         <p>Crafted with care by <a href="https://www.linkedin.com/in/raghad-suwan/">Raghad Suwan</a> | Happy Travels!</p>
     </footer>
 
-    <script>
-        // Register the service worker for offline capabilities
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/service-worker.js')
-                    .then(reg => console.log("Service Worker registered successfully:", reg))
-                    .catch(err => console.error("Service Worker registration failed:", err));
-            });
-        }
-    </script>
+    <!-- Include the bundled JavaScript file -->
+    <script src="path/to/bundle.js"></script>
 </body>
 
 </html>

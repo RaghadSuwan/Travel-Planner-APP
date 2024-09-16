@@ -1,5 +1,5 @@
-import("./styles/style.scss")
-import { handleSubmit } from "./script/handleSubmit"
+// index.js
+const { handleSubmit } = require('./script/handleSubmit');
 
-
-export { handleSubmit }
+// Example usage
+document.querySelector('form').addEventListener('submit', handleSubmit);
