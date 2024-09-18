@@ -1,12 +1,12 @@
 {
   "name": "travel-planner",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "bundle.js",
   "scripts": {
-    "start": "node src/server/server.js",
-     "dev": "webpack-dev-server --config webpack.dev.js --open",
-    "build": "webpack --config webpack.prod.js",
-    "test": "jest"
+    "test": "jest",
+    "start": "nodemon src/server/server.js",
+    "dev": " webpack-dev-server --config webpack.dev.js --open",
+    "build": "webpack --config webpack.prod.js"
   },
   "engines": {
     "node": "20.10.0"
