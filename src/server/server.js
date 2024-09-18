@@ -1,5 +1,4 @@
 require('dotenv').config();
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -7,8 +6,10 @@ const path = require('path');
 const axios = require('axios');
 const app = express();
 
-// احصل على مفتاح الـ API من متغيرات البيئة
+// API Keys
 const PIXABAY_API_KEY = process.env.PIXABAY_API_KEY;
+const WEATHERBIT_API_KEY = process.env.WEATHERBIT_API_KEY;
+const GEONAMES_API_KEY = process.env.GEONAMES_USERNAME;
 
 // Middleware setup
 app.use(cors());
@@ -20,7 +21,43 @@ app.get('/', function (req, res) {
     res.sendFile(path.resolve('dist/index.html'));
 });
 
-// Route for fetching images from Pixabay
+// Fetch weather data using Weatherbit API
+app.post('/getWeather', async (req, res) => {
+    const { destination } = req.body;
+
+    try {
+        // Get latitude and longitude from Geonames API
+        const geoURL = `http://api.geonames.org/searchJSON?q=${encodeURIComponent(destination)}&maxRows=1&username=${GEONAMES_API_KEY}`;
+        const geoResponse = await axios.get(geoURL);
+
+        // Log the response from Geonames API
+        console.log('Geonames API Response:', geoResponse.data);
+
+        const geoData = geoResponse.data;
+
+        if (geoData.geonames.length > 0) {
+            const { lat, lng } = geoData.geonames[0];
+
+            // Use Weatherbit API to get weather data
+            const weatherURL = `https://api.weatherbit.io/v2.0/current?lat=${lat}&lon=${lng}&key=${WEATHERBIT_API_KEY}`;
+            const weatherResponse = await axios.get(weatherURL);
+            const weatherData = weatherResponse.data;
+
+            res.send({
+                temp: weatherData.data[0].temp,
+                description: weatherData.data[0].weather.description
+            });
+        } else {
+            res.status(404).send({ error: 'Location not found' });
+        }
+    } catch (error) {
+        console.error('Error fetching weather:', error.message);
+        res.status(500).send({ error: `Failed to fetch weather: ${error.message}` });
+    }
+});
+
+
+// Fetch images from Pixabay
 app.post('/getImage', async (req, res) => {
     const { destination } = req.body;
 
@@ -36,8 +73,8 @@ app.post('/getImage', async (req, res) => {
             res.send({ image: 'Image not found' });
         }
     } catch (error) {
-        console.error('Error fetching image:', error);
-        res.status(500).send({ error: 'Failed to fetch image' });
+        console.error('Error fetching image:', error.message);
+        res.status(500).send({ error: `Failed to fetch image: ${error.message}` });
     }
 });
 
