@@ -8,60 +8,42 @@
 </head>
 
 <body>
-    <header>
-        <!-- Header section with the app name -->
-        <div class="header-text">
-            <h1>Your Next Adventure Awaits!</h1>
-            <p>Plan your journey effortlessly with the Travel Planner</p>
-        </div>
-    </header>
+    <div class="container">
+        <h1>Travel Planner</h1>
+        <form id="travelForm" method="post">
+            <label for="destination">Enter your travel destination:</label>
+            <input type="text" id="destination" name="destination" placeholder="e.g., Paris" required />
 
-    <main>
-        <div class="container">
-            <form id="myForm" method="post">
-                <label for="location"><strong>Enter a Location:</strong></label>
-                <input type="text" id="location" name="location" placeholder="Enter a city name" required />
-                <br /><br />
+            <label for="date">Enter your trip start date:</label>
+            <input type="date" id="date" name="date" required />
 
-                <label for="date"><strong>Departure Date:</strong></label>
-                <input type="date" id="date" name="date" />
-                <br /><br />
+            <label for="endDate">Enter your trip end date:</label>
+            <input type="date" id="endDate" name="endDate" required />
 
-                <label for="note"><strong>Notes:</strong></label>
-                <textarea id="note" name="note" placeholder="Add any specific notes for your journey..." rows="5"></textarea>
-                <br /><br />
+            <button type="submit" value="Submit">Get Weather and Images</button>
+        </form>
+    </div>
 
-                <button type="submit">Get Info</button>
-            </form>
-        </div>
+    <div id="error" style="display: none;"></div>
 
-        <div id="error" style="display: none;"></div>
-        <div id="results">
-            <h2>Results:</h2>
-            <div id="loader" style="display: none;">Loading...</div>
-            <ul id="resultsList">
-                <li id="weather"></li>
-                <li id="image"></li>
-            </ul>
+    <div id="results">
+        <h2>Search Results:</h2>
+        <div id="loader" style="display: none;">Loading...</div>
+        <h3>Expected Weather:</h3>
+        <ul id="weatherInfo">
+            <li id="temp"></li>
+            <li id="description"></li>
+        </ul>
+
+
+        <h3>Destination Image:</h3>
+        <div id="imageContainer">
+            <img id="destinationImage" src="" alt="Destination Image" style="max-width: 100%; height: auto;">
         </div>
 
-        <section id="saved-trips">
-            <div class="trips-header">
-                <strong>Your Planned Journeys</strong>
-            </div>
-            <div id="trip-results">
-                <!-- Saved trips will appear here dynamically -->
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <!-- Footer section with a personal touch -->
-        <p>Crafted with care by <a href="https://www.linkedin.com/in/raghad-suwan/">Raghad Suwan</a> | Happy Travels!</p>
-    </footer>
-
-    <!-- Include the bundled JavaScript file -->
-    <script src="path/to/bundle.js"></script>
+        <h3>Trip Duration:</h3>
+        <p id="tripDuration"></p>
+    </div>
 </body>
 
 </html>

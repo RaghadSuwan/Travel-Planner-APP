@@ -1,0 +1,124 @@
+// Variables
+$primary-color: #121e2c; // Primary color for main elements
+$secondary-color: #1A2A37; // Secondary color for hover effects and accents
+$error-color: #FFA500; // Background color for error messages
+$text-color: #333; // Main text color
+$background-color: #f2f2f2; // General background color
+
+// Mixins
+@mixin box-shadow($shadow) {
+  -webkit-box-shadow: $shadow; // For WebKit browsers
+  -moz-box-shadow: $shadow;    // For Mozilla browsers
+  box-shadow: $shadow;         // Standard box-shadow property
+}
+
+// Base styles
+body {
+  font-family: Arial, sans-serif; // Default font family
+  background-color: $background-color; // Background color for the whole page
+  margin: 0; // Remove default margin
+  padding: 0; // Remove default padding
+}
+
+form {
+  margin: 20px auto; // Center form horizontally with auto margins
+  padding: 20px; // Add padding inside the form
+  background-color: #fff; // White background for the form
+  border-radius: 10px; // Rounded corners for the form
+  @include box-shadow(0 0 10px rgba(0, 0, 0, 0.1)); // Subtle shadow for the form
+  max-width: 600px; // Set a maximum width for the form
+  
+  label {
+    display: block; // Make labels block-level elements
+    margin-bottom: 10px; // Space below the label
+    font-weight: bold; // Bold font for labels
+    color: $text-color; // Text color for labels
+  }
+
+  input[type="text"], input[type="date"] {
+    width: 100%; // Full width input
+    padding: 10px; // Padding inside the input
+    margin-bottom: 20px; // Space below the input
+    border-radius: 5px; // Rounded corners for the input
+    border: 1px solid #ddd; // Light border around the input
+    @include box-shadow(0 0 5px rgba(0, 0, 0, 0.1)); // Light shadow for the input
+    
+    &:focus {
+      outline: none; // Remove default outline on focus
+      @include box-shadow(0 0 5px rgba(0, 0, 0, 0.4)); // Enhanced shadow on focus
+    }
+  }
+
+  button[type="submit"] {
+    background-color: $primary-color; // Background color for the button
+    color: #fff; // White text color for the button
+    padding: 10px 20px; // Padding inside the button
+    border: none; // Remove default border
+    border-radius: 5px; // Rounded corners for the button
+    cursor: pointer; // Pointer cursor on hover
+    transition: background-color 0.3s ease; // Smooth background color transition on hover
+  
+    &:hover {
+      background-color: $secondary-color; // Change background color on hover
+    }
+  }
+}
+
+#loader {
+  border: 16px solid #f3f3f3; // Light gray border for the loader
+  border-top: 16px solid #3498db; // Blue color for the top border
+  border-radius: 50%; // Make the loader circular
+  width: 120px; // Width of the loader
+  height: 120px; // Height of the loader
+  animation: spin 2s linear infinite; // Spin animation
+  margin: 50px auto 0; // Center the loader horizontally and add top margin
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); } // Start from 0 degrees
+  100% { transform: rotate(360deg); } // End at 360 degrees
+}
+
+#error {
+  @include box-shadow(0 0 10px rgba(0, 0, 0, 0.1)); // Subtle shadow for error messages
+  margin: 20px auto; // Center error message horizontally with auto margins
+  padding: 20px; // Padding inside the error message
+  background-color: $error-color; // Background color for the error message
+  color: black; // Text color for the error message
+  max-width: 600px; // Set a maximum width for the error message
+}
+
+#results {
+  margin: 20px auto; // Center results container horizontally with auto margins
+  padding: 20px; // Padding inside the results container
+  background-color: #fff; // White background for the results container
+  border-radius: 10px; // Rounded corners for the results container
+  @include box-shadow(0 0 10px rgba(0, 0, 0, 0.1)); // Subtle shadow for the results container
+  max-width: 600px; // Set a maximum width for the results container
+
+  h2 {
+    margin-top: 0; // Remove top margin for the heading
+    font-size: 24px; // Font size for the heading
+    font-weight: bold; // Bold font for the heading
+    color: $text-color; // Text color for the heading
+  }
+
+  ul {
+    list-style: none; // Remove default list styling
+    padding: 0; // Remove default padding
+    margin: 0; // Remove default margin
+
+    li {
+      margin-bottom: 10px; // Space below each list item
+      font-size: 18px; // Font size for list items
+      color: $text-color; // Text color for list items
+    }
+  }
+}
+
+#imageContainer img {
+  width: 100%; // Full width image
+  height: auto; // Automatic height based on image proportions
+  border-radius: 10px; // Rounded corners for the image
+  @include box-shadow(0 0 10px rgba(0, 0, 0, 0.1)); // Subtle shadow for the image
+}
