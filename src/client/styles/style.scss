@@ -19,6 +19,11 @@ body {
   margin: 0; // Remove default margin
   padding: 0; // Remove default padding
 }
+h1 {
+  text-align: center; // توسيط العنوان
+  font-size: 36px; // ضبط حجم الخط
+  color: $primary-color; // اللون الأساسي
+}
 
 form {
   margin: 20px auto; // Center form horizontally with auto margins
@@ -137,4 +142,17 @@ form {
   @include box-shadow(
     0 0 10px rgba(0, 0, 0, 0.1)
   ); // Subtle shadow for the image
+}
+footer {
+  text-align: center; // توسيط النص في الفوتر
+  margin-top: 20px; // إضافة مسافة فوق الفوتر
+  font-size: 14px; // ضبط حجم النص
+  a {
+    text-decoration: none; // إزالة التسطير تحت الرابط
+    color: $primary-color; // تغيير لون الرابط
+    font-weight: bold; // جعل النص عريضًا
+    &:hover {
+      color: $secondary-color; // تغيير اللون عند التمرير
+    }
+  }
 }
