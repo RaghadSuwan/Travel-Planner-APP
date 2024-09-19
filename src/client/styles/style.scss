@@ -1,15 +1,15 @@
 // Variables
 $primary-color: #121e2c; // Primary color for main elements
-$secondary-color: #1A2A37; // Secondary color for hover effects and accents
-$error-color: #FFA500; // Background color for error messages
+$secondary-color: #1a2a37; // Secondary color for hover effects and accents
+$error-color: #ffa500; // Background color for error messages
 $text-color: #333; // Main text color
 $background-color: #f2f2f2; // General background color
 
 // Mixins
 @mixin box-shadow($shadow) {
   -webkit-box-shadow: $shadow; // For WebKit browsers
-  -moz-box-shadow: $shadow;    // For Mozilla browsers
-  box-shadow: $shadow;         // Standard box-shadow property
+  -moz-box-shadow: $shadow; // For Mozilla browsers
+  box-shadow: $shadow; // Standard box-shadow property
 }
 
 // Base styles
@@ -25,9 +25,11 @@ form {
   padding: 20px; // Add padding inside the form
   background-color: #fff; // White background for the form
   border-radius: 10px; // Rounded corners for the form
-  @include box-shadow(0 0 10px rgba(0, 0, 0, 0.1)); // Subtle shadow for the form
+  @include box-shadow(
+    0 0 10px rgba(0, 0, 0, 0.1)
+  ); // Subtle shadow for the form
   max-width: 600px; // Set a maximum width for the form
-  
+
   label {
     display: block; // Make labels block-level elements
     margin-bottom: 10px; // Space below the label
@@ -35,17 +37,22 @@ form {
     color: $text-color; // Text color for labels
   }
 
-  input[type="text"], input[type="date"] {
+  input[type="text"],
+  input[type="date"] {
     width: 100%; // Full width input
     padding: 10px; // Padding inside the input
     margin-bottom: 20px; // Space below the input
     border-radius: 5px; // Rounded corners for the input
     border: 1px solid #ddd; // Light border around the input
-    @include box-shadow(0 0 5px rgba(0, 0, 0, 0.1)); // Light shadow for the input
-    
+    @include box-shadow(
+      0 0 5px rgba(0, 0, 0, 0.1)
+    ); // Light shadow for the input
+
     &:focus {
       outline: none; // Remove default outline on focus
-      @include box-shadow(0 0 5px rgba(0, 0, 0, 0.4)); // Enhanced shadow on focus
+      @include box-shadow(
+        0 0 5px rgba(0, 0, 0, 0.4)
+      ); // Enhanced shadow on focus
     }
   }
 
@@ -57,7 +64,6 @@ form {
     border-radius: 5px; // Rounded corners for the button
     cursor: pointer; // Pointer cursor on hover
     transition: background-color 0.3s ease; // Smooth background color transition on hover
-  
     &:hover {
       background-color: $secondary-color; // Change background color on hover
     }
@@ -75,12 +81,18 @@ form {
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); } // Start from 0 degrees
-  100% { transform: rotate(360deg); } // End at 360 degrees
+  0% {
+    transform: rotate(0deg);
+  } // Start from 0 degrees
+  100% {
+    transform: rotate(360deg);
+  } // End at 360 degrees
 }
 
 #error {
-  @include box-shadow(0 0 10px rgba(0, 0, 0, 0.1)); // Subtle shadow for error messages
+  @include box-shadow(
+    0 0 10px rgba(0, 0, 0, 0.1)
+  ); // Subtle shadow for error messages
   margin: 20px auto; // Center error message horizontally with auto margins
   padding: 20px; // Padding inside the error message
   background-color: $error-color; // Background color for the error message
@@ -93,7 +105,9 @@ form {
   padding: 20px; // Padding inside the results container
   background-color: #fff; // White background for the results container
   border-radius: 10px; // Rounded corners for the results container
-  @include box-shadow(0 0 10px rgba(0, 0, 0, 0.1)); // Subtle shadow for the results container
+  @include box-shadow(
+    0 0 10px rgba(0, 0, 0, 0.1)
+  ); // Subtle shadow for the results container
   max-width: 600px; // Set a maximum width for the results container
 
   h2 {
@@ -120,5 +134,7 @@ form {
   width: 100%; // Full width image
   height: auto; // Automatic height based on image proportions
   border-radius: 10px; // Rounded corners for the image
-  @include box-shadow(0 0 10px rgba(0, 0, 0, 0.1)); // Subtle shadow for the image
+  @include box-shadow(
+    0 0 10px rgba(0, 0, 0, 0.1)
+  ); // Subtle shadow for the image
 }

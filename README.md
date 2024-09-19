@@ -1,4 +1,3 @@
-
 # 🌍 Travel Planner
 
 Welcome to your go-to Travel Planner app! 🚀 Ready to turn your travel dreams into reality? Whether you're heading to sunny beaches or snowy mountains, our app is here to help you organize your adventures effortlessly. Just add your travel details, and we'll take care of the rest!

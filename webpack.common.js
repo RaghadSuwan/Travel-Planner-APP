@@ -7,7 +7,7 @@ const CssMinimizerPlugin = require("css-minimizer-webpack-plugin"); // Plugin to
 module.exports = {
     // Entry point of the application, where webpack starts the bundling process
     entry: "./src/client/index.js",
-    
+
     module: {
         // Rules to specify how different types of files should be processed
         rules: [
@@ -27,7 +27,7 @@ module.exports = {
         ],
         minimize: true, // Enable minimization of the output files (both JS and CSS)
     },
-    
+
     plugins: [
         new htmlWebpackPlugin({
             template: "./src/client/views/index.html", // Path to the HTML template to use

@@ -30,8 +30,7 @@ app.post('/getWeather', async (req, res) => {
         const geoURL = `http://api.geonames.org/searchJSON?q=${encodeURIComponent(destination)}&maxRows=1&username=${GEONAMES_API_KEY}`;
         const geoResponse = await axios.get(geoURL);
 
-        // Log the response from Geonames API
-        console.log('Geonames API Response:', geoResponse.data);
+
 
         const geoData = geoResponse.data;
 
@@ -56,7 +55,6 @@ app.post('/getWeather', async (req, res) => {
     }
 });
 
-
 // Fetch images from Pixabay
 app.post('/getImage', async (req, res) => {
     const { destination } = req.body;
@@ -78,7 +76,5 @@ app.post('/getImage', async (req, res) => {
     }
 });
 
-// Start the server
-app.listen(8000, function () {
-    console.log('Server running on port 8000');
-});
+// Export the app for use in server.js
+module.exports = app;
