@@ -144,15 +144,23 @@ form {
   ); // Subtle shadow for the image
 }
 footer {
+  background-color: $primary-color; // تغيير لون الخلفية إلى اللون الأساسي
+  color: #fff; // تغيير لون النص إلى الأبيض
   text-align: center; // توسيط النص في الفوتر
-  margin-top: 20px; // إضافة مسافة فوق الفوتر
+  padding: 20px 0; // إضافة مسافة داخلية (Padding) من الأعلى والأسفل
+  margin-top: 40px; // إضافة مسافة فوق الفوتر
+  box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1); // إضافة ظل خفيف فوق الفوتر
+
   font-size: 14px; // ضبط حجم النص
+
   a {
     text-decoration: none; // إزالة التسطير تحت الرابط
-    color: $primary-color; // تغيير لون الرابط
+    color: #fff; // تغيير لون الرابط إلى الأبيض
     font-weight: bold; // جعل النص عريضًا
+    transition: color 0.3s ease; // إضافة تأثير سلس لتغيير اللون عند التمرير
+
     &:hover {
-      color: $secondary-color; // تغيير اللون عند التمرير
+      color: $secondary-color; // تغيير لون الرابط عند التمرير إلى اللون الثانوي
     }
   }
 }

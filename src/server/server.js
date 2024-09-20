@@ -29,9 +29,6 @@ app.post('/getWeather', async (req, res) => {
         // Get latitude and longitude from Geonames API
         const geoURL = `http://api.geonames.org/searchJSON?q=${encodeURIComponent(destination)}&maxRows=1&username=${GEONAMES_API_KEY}`;
         const geoResponse = await axios.get(geoURL);
-
-
-
         const geoData = geoResponse.data;
 
         if (geoData.geonames.length > 0) {
