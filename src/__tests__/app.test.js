@@ -27,7 +27,7 @@ describe('handleSubmit', () => {
     });
 
     test('should fetch weather data and update DOM', async () => {
-        // Mock axios responses
+        // Mock axios responses for weather and image
         axios.post
             .mockResolvedValueOnce({
                 data: { temp: 25, description: 'Sunny' }
@@ -36,18 +36,18 @@ describe('handleSubmit', () => {
                 data: { image: 'https://pixabay.com/sample-image.jpg' }
             });
 
-        // Create a fake event to pass to the function
+        // Create a fake event to simulate form submission
         const fakeEvent = {
             preventDefault: jest.fn()
         };
 
-        // Call handleSubmit
+        // Call handleSubmit function
         await handleSubmit(fakeEvent);
 
-        // Assert that axios.post was called twice
+        // Assert that axios.post was called twice for weather and image
         expect(axios.post).toHaveBeenCalledTimes(2);
 
-        // Assert that the DOM was updated
+        // Assert that the DOM was updated with the fetched data
         expect(document.getElementById('temp').innerText).toBe('Temperature: 25°C');
         expect(document.getElementById('description').innerText).toBe('Description: Sunny');
         expect(document.getElementById('destinationImage').src).toBe('https://pixabay.com/sample-image.jpg');
@@ -55,17 +55,17 @@ describe('handleSubmit', () => {
     });
 
     test('should show error if axios fails', async () => {
-        // Mock axios to throw an error
+        // Mock axios to throw an error for testing error handling
         axios.post.mockRejectedValueOnce(new Error('Network error'));
 
         const fakeEvent = {
             preventDefault: jest.fn()
         };
 
-        // Call handleSubmit
+        // Call handleSubmit function
         await handleSubmit(fakeEvent);
 
-        // Assert that the error message was shown
+        // Assert that the error message was shown in the DOM
         expect(document.getElementById('error').style.display).toBe('block');
         expect(document.getElementById('error').innerText).toBe('An error occurred while fetching data.');
 
