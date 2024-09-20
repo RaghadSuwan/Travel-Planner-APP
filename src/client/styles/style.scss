@@ -19,10 +19,11 @@ body {
   margin: 0; // Remove default margin
   padding: 0; // Remove default padding
 }
+
 h1 {
-  text-align: center; // توسيط العنوان
-  font-size: 36px; // ضبط حجم الخط
-  color: $primary-color; // اللون الأساسي
+  text-align: center; // Center the title
+  font-size: 36px; // Set font size
+  color: $primary-color; // Primary color for the heading
 }
 
 form {
@@ -30,9 +31,7 @@ form {
   padding: 20px; // Add padding inside the form
   background-color: #fff; // White background for the form
   border-radius: 10px; // Rounded corners for the form
-  @include box-shadow(
-    0 0 10px rgba(0, 0, 0, 0.1)
-  ); // Subtle shadow for the form
+  @include box-shadow(0 0 10px rgba(0, 0, 0, 0.1)); // Subtle shadow for the form
   max-width: 600px; // Set a maximum width for the form
 
   label {
@@ -49,15 +48,11 @@ form {
     margin-bottom: 20px; // Space below the input
     border-radius: 5px; // Rounded corners for the input
     border: 1px solid #ddd; // Light border around the input
-    @include box-shadow(
-      0 0 5px rgba(0, 0, 0, 0.1)
-    ); // Light shadow for the input
+    @include box-shadow(0 0 5px rgba(0, 0, 0, 0.1)); // Light shadow for the input
 
     &:focus {
       outline: none; // Remove default outline on focus
-      @include box-shadow(
-        0 0 5px rgba(0, 0, 0, 0.4)
-      ); // Enhanced shadow on focus
+      @include box-shadow(0 0 5px rgba(0, 0, 0, 0.4)); // Enhanced shadow on focus
     }
   }
 
@@ -75,6 +70,7 @@ form {
   }
 }
 
+// Loader styling
 #loader {
   border: 16px solid #f3f3f3; // Light gray border for the loader
   border-top: 16px solid #3498db; // Blue color for the top border
@@ -85,19 +81,19 @@ form {
   margin: 50px auto 0; // Center the loader horizontally and add top margin
 }
 
+// Spin animation keyframes
 @keyframes spin {
   0% {
-    transform: rotate(0deg);
-  } // Start from 0 degrees
+    transform: rotate(0deg); // Start from 0 degrees
+  }
   100% {
-    transform: rotate(360deg);
-  } // End at 360 degrees
+    transform: rotate(360deg); // End at 360 degrees
+  }
 }
 
+// Error message styling
 #error {
-  @include box-shadow(
-    0 0 10px rgba(0, 0, 0, 0.1)
-  ); // Subtle shadow for error messages
+  @include box-shadow(0 0 10px rgba(0, 0, 0, 0.1)); // Subtle shadow for error messages
   margin: 20px auto; // Center error message horizontally with auto margins
   padding: 20px; // Padding inside the error message
   background-color: $error-color; // Background color for the error message
@@ -105,14 +101,13 @@ form {
   max-width: 600px; // Set a maximum width for the error message
 }
 
+// Results container styling
 #results {
   margin: 20px auto; // Center results container horizontally with auto margins
   padding: 20px; // Padding inside the results container
   background-color: #fff; // White background for the results container
   border-radius: 10px; // Rounded corners for the results container
-  @include box-shadow(
-    0 0 10px rgba(0, 0, 0, 0.1)
-  ); // Subtle shadow for the results container
+  @include box-shadow(0 0 10px rgba(0, 0, 0, 0.1)); // Subtle shadow for the results container
   max-width: 600px; // Set a maximum width for the results container
 
   h2 {
@@ -135,32 +130,33 @@ form {
   }
 }
 
+// Image container styling
 #imageContainer img {
   width: 100%; // Full width image
   height: auto; // Automatic height based on image proportions
   border-radius: 10px; // Rounded corners for the image
-  @include box-shadow(
-    0 0 10px rgba(0, 0, 0, 0.1)
-  ); // Subtle shadow for the image
+  @include box-shadow(0 0 10px rgba(0, 0, 0, 0.1)); // Subtle shadow for the image
 }
-footer {
-  background-color: $primary-color; // تغيير لون الخلفية إلى اللون الأساسي
-  color: #fff; // تغيير لون النص إلى الأبيض
-  text-align: center; // توسيط النص في الفوتر
-  padding: 20px 0; // إضافة مسافة داخلية (Padding) من الأعلى والأسفل
-  margin-top: 40px; // إضافة مسافة فوق الفوتر
-  box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1); // إضافة ظل خفيف فوق الفوتر
 
-  font-size: 14px; // ضبط حجم النص
+// Footer styling
+footer {
+  background-color: $primary-color; // Change footer background to primary color
+  color: #fff; // Change text color to white
+  text-align: center; // Center text in the footer
+  padding: 20px 0; // Add vertical padding
+  margin-top: 40px; // Add top margin
+  box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1); // Add subtle shadow above the footer
+
+  font-size: 14px; // Set font size
 
   a {
-    text-decoration: none; // إزالة التسطير تحت الرابط
-    color: #fff; // تغيير لون الرابط إلى الأبيض
-    font-weight: bold; // جعل النص عريضًا
-    transition: color 0.3s ease; // إضافة تأثير سلس لتغيير اللون عند التمرير
+    text-decoration: none; // Remove underline from links
+    color: #fff; // Change link color to white
+    font-weight: bold; // Make link text bold
+    transition: color 0.3s ease; // Smooth color transition on hover
 
     &:hover {
-      color: $error-color; // تغيير لون الرابط عند التمرير إلى اللون الثانوي
+      color: $error-color; // Change link color on hover to secondary color
     }
   }
 }

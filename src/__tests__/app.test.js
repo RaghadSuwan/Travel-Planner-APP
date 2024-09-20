@@ -1,19 +1,19 @@
-import axios from 'axios';
-import { handleSubmit } from '../client/script/app';
+import axios from 'axios'; // Import the axios library
+import { handleSubmit } from '../client/script/app'; // Import the handleSubmit function
 
-// محاكاة axios باستخدام Jest
+// Mock axios using Jest
 jest.mock('axios');
 
 describe('Test handleSubmit function', () => {
-    let event;
+    let event; // Define the event variable
 
     beforeEach(() => {
-        // إعداد الحدث المزيف للـ form
+        // Set up a mock event for the form
         event = {
-            preventDefault: jest.fn(),
+            preventDefault: jest.fn(), // Mock the preventDefault function
         };
 
-        // إعداد DOM مزيف لعناصر HTML
+        // Set up a mock DOM for HTML elements
         document.body.innerHTML = `
             <form id="travelForm">
                 <input type="text" id="destination" value="Paris"/>
@@ -30,11 +30,11 @@ describe('Test handleSubmit function', () => {
     });
 
     afterEach(() => {
-        jest.clearAllMocks();
+        jest.clearAllMocks(); // Clear mocks after each test
     });
 
     test('should display weather and image data when APIs return valid data', async () => {
-        // بيانات الطقس المحاكية
+        // Mock weather response data
         const mockWeatherResponse = {
             data: {
                 temp: 20,
@@ -42,21 +42,21 @@ describe('Test handleSubmit function', () => {
             }
         };
 
-        // بيانات الصورة المحاكية
+        // Mock image response data
         const mockImageResponse = {
             data: {
                 image: 'https://example.com/paris.jpg'
             }
         };
 
-        // محاكاة طلبات axios
+        // Mock axios requests
         axios.post
-            .mockResolvedValueOnce({ data: mockWeatherResponse.data })  // محاكاة رد API الطقس
-            .mockResolvedValueOnce({ data: mockImageResponse.data });   // محاكاة رد API الصور
+            .mockResolvedValueOnce({ data: mockWeatherResponse.data })  // Mock weather API response
+            .mockResolvedValueOnce({ data: mockImageResponse.data });   // Mock image API response
 
-        await handleSubmit(event);
+        await handleSubmit(event); // Call the handleSubmit function
 
-        // تحقق من عرض البيانات على الصفحة
+        // Check if the data is displayed on the page
         expect(document.getElementById('temp').innerText).toBe('Temperature: 20°C');
         expect(document.getElementById('description').innerText).toBe('Description: Clear sky');
         expect(document.getElementById('destinationImage').src).toBe('https://example.com/paris.jpg');
@@ -64,28 +64,28 @@ describe('Test handleSubmit function', () => {
     });
 
     test('should display error message when API request fails', async () => {
-        // محاكاة خطأ في API
-        axios.post.mockRejectedValue(new Error('API request failed'));
+        // Mock an API error
+        axios.post.mockRejectedValue(new Error('API request failed')); // Mock failed response
 
-        await handleSubmit(event);
+        await handleSubmit(event); // Call the handleSubmit function
 
-        // تحقق من عرض رسالة الخطأ
+        // Check if the error message is displayed
         expect(document.getElementById('error').style.display).toBe('block');
         expect(document.getElementById('error').innerText).toBe('An error occurred while fetching data.');
     });
 
     test('should calculate trip duration correctly', async () => {
-        // محاكاة رد API الطقس والصورة
+        // Mock weather and image API responses
         const mockWeatherResponse = { data: { temp: 20, description: 'Clear sky' } };
         const mockImageResponse = { data: { image: 'https://example.com/paris.jpg' } };
 
         axios.post
-            .mockResolvedValueOnce({ data: mockWeatherResponse.data })
-            .mockResolvedValueOnce({ data: mockImageResponse.data });
+            .mockResolvedValueOnce({ data: mockWeatherResponse.data }) // Mock weather API response
+            .mockResolvedValueOnce({ data: mockImageResponse.data }); // Mock image API response
 
-        await handleSubmit(event);
+        await handleSubmit(event); // Call the handleSubmit function
 
-        // تحقق من حساب مدة الرحلة بشكل صحيح
+        // Check if the trip duration is calculated correctly
         expect(document.getElementById('tripDuration').innerText).toBe('Your trip is 5 days long.');
     });
 });
