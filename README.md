@@ -1,16 +1,11 @@
-To improve your Travel Planner README, I suggest focusing on clarity, user engagement, and professionalism. Here’s a refined version:
-
----
-
 # 🌍 Travel Planner
 
 Welcome to **Travel Planner**—your go-to app for organizing unforgettable trips! Whether you're dreaming of a sunny beach or a snowy mountain escape, our app helps you plan with ease. Just enter your destination and travel dates, and we’ll handle the rest! ✈️🌟
 
 ## 🎉 Features
 
-1. **Track Your Trips**: Add and manage your destination and travel dates easily.
-2. **Explore Beautiful Destinations**: Discover stunning images of your chosen places.
-3. **Offline Access**: With service worker support, the app works even without an internet connection.
+1. **Explore Beautiful Destinations**: Discover stunning images of your chosen places.
+2. **Offline Access**: With service worker support, the app works even without an internet connection.
 
 ## 🚀 Getting Started
 
