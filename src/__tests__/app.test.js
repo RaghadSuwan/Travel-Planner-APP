@@ -1,24 +1,9 @@
-// src/tests/app.test.js
 import { handleSubmit } from '../client/script/app.js';
+import axios from 'axios';
 
-// Mock fetch
-global.fetch = jest.fn((url) => {
-    if (url.includes('getWeather')) {
-      return Promise.resolve({
-        json: () => Promise.resolve({
-          temp: 25,
-          description: 'Clear sky'
-        })
-      });
-    } else if (url.includes('getImage')) {
-      return Promise.resolve({
-        json: () => Promise.resolve({
-          image: 'https://pixabay.com/image.jpg'
-        })
-      });
-    }
-    return Promise.reject(new Error('Network error'));
-  });
+// Mock axios
+jest.mock('axios');
+
 // Mock DOM elements
 document.body.innerHTML = `
     <form>
@@ -37,18 +22,18 @@ document.body.innerHTML = `
 
 describe('handleSubmit', () => {
     beforeEach(() => {
-        // Reset fetch mock before each test
-        fetch.mockClear();
+        // Reset axios mock before each test
+        axios.post.mockClear();
     });
 
     test('should fetch weather data and update DOM', async () => {
-        // Mock fetch responses
-        fetch
+        // Mock axios responses
+        axios.post
             .mockResolvedValueOnce({
-                json: () => Promise.resolve({ temp: 25, description: 'Sunny' })
+                data: { temp: 25, description: 'Sunny' }
             })
             .mockResolvedValueOnce({
-                json: () => Promise.resolve({ image: 'https://pixabay.com/sample-image.jpg' })
+                data: { image: 'https://pixabay.com/sample-image.jpg' }
             });
 
         // Create a fake event to pass to the function
@@ -59,8 +44,8 @@ describe('handleSubmit', () => {
         // Call handleSubmit
         await handleSubmit(fakeEvent);
 
-        // Assert that fetch was called twice
-        expect(fetch).toHaveBeenCalledTimes(2);
+        // Assert that axios.post was called twice
+        expect(axios.post).toHaveBeenCalledTimes(2);
 
         // Assert that the DOM was updated
         expect(document.getElementById('temp').innerText).toBe('Temperature: 25°C');
@@ -69,9 +54,9 @@ describe('handleSubmit', () => {
         expect(document.getElementById('tripDuration').innerText).toBe('Your trip is 5 days long.');
     });
 
-    test('should show error if fetch fails', async () => {
-        // Mock fetch to throw an error
-        fetch.mockRejectedValueOnce(new Error('Network error'));
+    test('should show error if axios fails', async () => {
+        // Mock axios to throw an error
+        axios.post.mockRejectedValueOnce(new Error('Network error'));
 
         const fakeEvent = {
             preventDefault: jest.fn()
@@ -88,9 +73,3 @@ describe('handleSubmit', () => {
         expect(document.getElementById('loader').style.display).toBe('none');
     });
 });
-
-
-
-
-
-
