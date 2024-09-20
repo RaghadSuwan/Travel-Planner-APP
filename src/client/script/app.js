@@ -20,6 +20,12 @@ const handleSubmit = async (event) => {
     tripData.startDate = document.getElementById('date').value;
     tripData.endDate = document.getElementById('endDate').value;
 
+    // Validate inputs
+    if (!tripData.destination || !tripData.startDate || !tripData.endDate) {
+        alert('Please fill in all fields.');
+        return; // Exit if validation fails
+    }
+
     // Calculate trip duration in days
     tripData.tripDuration = (new Date(tripData.endDate) - new Date(tripData.startDate)) / (1000 * 60 * 60 * 24);
 

@@ -51,8 +51,8 @@ describe('Test handleSubmit function', () => {
 
         // Mock axios requests
         axios.post
-            .mockResolvedValueOnce({ data: mockWeatherResponse.data })  // Mock weather API response
-            .mockResolvedValueOnce({ data: mockImageResponse.data });   // Mock image API response
+            .mockResolvedValueOnce(mockWeatherResponse)  // Mock weather API response
+            .mockResolvedValueOnce(mockImageResponse);   // Mock image API response
 
         await handleSubmit(event); // Call the handleSubmit function
 
@@ -80,8 +80,8 @@ describe('Test handleSubmit function', () => {
         const mockImageResponse = { data: { image: 'https://example.com/paris.jpg' } };
 
         axios.post
-            .mockResolvedValueOnce({ data: mockWeatherResponse.data }) // Mock weather API response
-            .mockResolvedValueOnce({ data: mockImageResponse.data }); // Mock image API response
+            .mockResolvedValueOnce(mockWeatherResponse) // Mock weather API response
+            .mockResolvedValueOnce(mockImageResponse); // Mock image API response
 
         await handleSubmit(event); // Call the handleSubmit function
 

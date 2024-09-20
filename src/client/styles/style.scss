@@ -1,162 +1,172 @@
 // Variables
-$primary-color: #121e2c; // Primary color for main elements
-$secondary-color: #1a2a37; // Secondary color for hover effects and accents
-$error-color: #ffa500; // Background color for error messages
-$text-color: #333; // Main text color
-$background-color: #f2f2f2; // General background color
+$primary-color: #121e2c; 
+$secondary-color: #1a2a37; 
+$error-color: #ffa500; 
+$text-color: #333; 
+$background-color: #f2f2f2; 
 
 // Mixins
 @mixin box-shadow($shadow) {
-  -webkit-box-shadow: $shadow; // For WebKit browsers
-  -moz-box-shadow: $shadow; // For Mozilla browsers
-  box-shadow: $shadow; // Standard box-shadow property
+  -webkit-box-shadow: $shadow; 
+  -moz-box-shadow: $shadow; 
+  box-shadow: $shadow; 
 }
 
 // Base styles
 body {
-  font-family: Arial, sans-serif; // Default font family
-  background-color: $background-color; // Background color for the whole page
-  margin: 0; // Remove default margin
-  padding: 0; // Remove default padding
+  font-family: Arial, sans-serif; 
+  background-color: $background-color; 
+  margin: 0; 
+  padding: 0; 
 }
 
 h1 {
-  text-align: center; // Center the title
-  font-size: 36px; // Set font size
-  color: $primary-color; // Primary color for the heading
+  text-align: center; 
+  font-size: 36px; 
+  color: $primary-color; 
 }
 
 form {
-  margin: 20px auto; // Center form horizontally with auto margins
-  padding: 20px; // Add padding inside the form
-  background-color: #fff; // White background for the form
-  border-radius: 10px; // Rounded corners for the form
-  @include box-shadow(0 0 10px rgba(0, 0, 0, 0.1)); // Subtle shadow for the form
-  max-width: 600px; // Set a maximum width for the form
+  margin: 20px auto; 
+  padding: 20px; 
+  background-color: #fff; 
+  border-radius: 10px; 
+  @include box-shadow(0 0 10px rgba(0, 0, 0, 0.1)); 
+  max-width: 600px; 
 
   label {
-    display: block; // Make labels block-level elements
-    margin-bottom: 10px; // Space below the label
-    font-weight: bold; // Bold font for labels
-    color: $text-color; // Text color for labels
+    display: block; 
+    margin-bottom: 10px; 
+    font-weight: bold; 
+    color: $text-color; 
   }
 
   input[type="text"],
   input[type="date"] {
-    width: 100%; // Full width input
-    padding: 10px; // Padding inside the input
-    margin-bottom: 20px; // Space below the input
-    border-radius: 5px; // Rounded corners for the input
-    border: 1px solid #ddd; // Light border around the input
-    @include box-shadow(0 0 5px rgba(0, 0, 0, 0.1)); // Light shadow for the input
+    width: 100%; 
+    padding: 10px; 
+    margin-bottom: 20px; 
+    border-radius: 5px; 
+    border: 1px solid #ddd; 
+    @include box-shadow(0 0 5px rgba(0, 0, 0, 0.1)); 
 
     &:focus {
-      outline: none; // Remove default outline on focus
-      @include box-shadow(0 0 5px rgba(0, 0, 0, 0.4)); // Enhanced shadow on focus
+      outline: none; 
+      @include box-shadow(0 0 5px rgba(0, 0, 0, 0.4)); 
     }
   }
 
   button[type="submit"] {
-    background-color: $primary-color; // Background color for the button
-    color: #fff; // White text color for the button
-    padding: 10px 20px; // Padding inside the button
-    border: none; // Remove default border
-    border-radius: 5px; // Rounded corners for the button
-    cursor: pointer; // Pointer cursor on hover
-    transition: background-color 0.3s ease; // Smooth background color transition on hover
+    background-color: $primary-color; 
+    color: #fff; 
+    padding: 10px 20px; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease; 
     &:hover {
-      background-color: $secondary-color; // Change background color on hover
+      background-color: $secondary-color; 
     }
   }
 }
 
 // Loader styling
 #loader {
-  border: 16px solid #f3f3f3; // Light gray border for the loader
-  border-top: 16px solid #3498db; // Blue color for the top border
-  border-radius: 50%; // Make the loader circular
-  width: 120px; // Width of the loader
-  height: 120px; // Height of the loader
-  animation: spin 2s linear infinite; // Spin animation
-  margin: 50px auto 0; // Center the loader horizontally and add top margin
+  border: 16px solid #f3f3f3; 
+  border-top: 16px solid #3498db; 
+  border-radius: 50%; 
+  width: 120px; 
+  height: 120px; 
+  animation: spin 2s linear infinite; 
+  margin: 50px auto 0; 
 }
 
 // Spin animation keyframes
 @keyframes spin {
   0% {
-    transform: rotate(0deg); // Start from 0 degrees
+    transform: rotate(0deg); 
   }
   100% {
-    transform: rotate(360deg); // End at 360 degrees
+    transform: rotate(360deg); 
   }
 }
 
 // Error message styling
 #error {
-  @include box-shadow(0 0 10px rgba(0, 0, 0, 0.1)); // Subtle shadow for error messages
-  margin: 20px auto; // Center error message horizontally with auto margins
-  padding: 20px; // Padding inside the error message
-  background-color: $error-color; // Background color for the error message
-  color: black; // Text color for the error message
-  max-width: 600px; // Set a maximum width for the error message
+  @include box-shadow(0 0 10px rgba(0, 0, 0, 0.1)); 
+  margin: 20px auto; 
+  padding: 20px; 
+  background-color: $error-color; 
+  color: black; 
+  max-width: 600px; 
+  animation: fade-in 0.5s; // Animation for error messages
+}
+
+// Fade-in animation for error messages
+@keyframes fade-in {
+  from {
+    opacity: 0; 
+  }
+  to {
+    opacity: 1; 
+  }
 }
 
 // Results container styling
 #results {
-  margin: 20px auto; // Center results container horizontally with auto margins
-  padding: 20px; // Padding inside the results container
-  background-color: #fff; // White background for the results container
-  border-radius: 10px; // Rounded corners for the results container
-  @include box-shadow(0 0 10px rgba(0, 0, 0, 0.1)); // Subtle shadow for the results container
-  max-width: 600px; // Set a maximum width for the results container
+  margin: 20px auto; 
+  padding: 20px; 
+  background-color: #fff; 
+  border-radius: 10px; 
+  @include box-shadow(0 0 10px rgba(0, 0, 0, 0.1)); 
+  max-width: 600px; 
 
   h2 {
-    margin-top: 0; // Remove top margin for the heading
-    font-size: 24px; // Font size for the heading
-    font-weight: bold; // Bold font for the heading
-    color: $text-color; // Text color for the heading
+    margin-top: 0; 
+    font-size: 24px; 
+    font-weight: bold; 
+    color: $text-color; 
   }
 
   ul {
-    list-style: none; // Remove default list styling
-    padding: 0; // Remove default padding
-    margin: 0; // Remove default margin
+    list-style: none; 
+    padding: 0; 
+    margin: 0; 
 
     li {
-      margin-bottom: 10px; // Space below each list item
-      font-size: 18px; // Font size for list items
-      color: $text-color; // Text color for list items
+      margin-bottom: 10px; 
+      font-size: 18px; 
+      color: $text-color; 
     }
   }
 }
 
 // Image container styling
 #imageContainer img {
-  width: 100%; // Full width image
-  height: auto; // Automatic height based on image proportions
-  border-radius: 10px; // Rounded corners for the image
-  @include box-shadow(0 0 10px rgba(0, 0, 0, 0.1)); // Subtle shadow for the image
+  width: 100%; 
+  height: auto; 
+  border-radius: 10px; 
+  @include box-shadow(0 0 10px rgba(0, 0, 0, 0.1)); 
 }
 
 // Footer styling
 footer {
-  background-color: $primary-color; // Change footer background to primary color
-  color: #fff; // Change text color to white
-  text-align: center; // Center text in the footer
-  padding: 20px 0; // Add vertical padding
-  margin-top: 40px; // Add top margin
-  box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1); // Add subtle shadow above the footer
-
-  font-size: 14px; // Set font size
+  background-color: $primary-color; 
+  color: #fff; 
+  text-align: center; 
+  padding: 20px 0; 
+  margin-top: 40px; 
+  box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1); 
+  font-size: 14px; 
 
   a {
-    text-decoration: none; // Remove underline from links
-    color: #fff; // Change link color to white
-    font-weight: bold; // Make link text bold
-    transition: color 0.3s ease; // Smooth color transition on hover
+    text-decoration: none; 
+    color: #fff; 
+    font-weight: bold; 
+    transition: color 0.3s ease; 
 
     &:hover {
-      color: $error-color; // Change link color on hover to secondary color
+      color: $error-color; 
     }
   }
 }

@@ -7,6 +7,6 @@ if (travelForm) {
     // Add event listener to the form if it exists
     travelForm.addEventListener('submit', handleSubmit);
 } else {
-    // Log an error if the form is not found
-    console.error('Form with ID "travelForm" not found.');
+    // Log a warning if the form is not found
+    console.warn('Form with ID "travelForm" not found.');
 }
