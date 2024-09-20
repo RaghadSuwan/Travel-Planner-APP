@@ -1,6 +1,6 @@
-import axios from 'axios'; // استيراد axios
+import axios from 'axios'; // Import axios for making HTTP requests
 
-// كائن رئيسي يحتوي على القيم الافتراضية للرحلة
+// Object to store default values for trip data
 const tripData = {
     destination: '',
     startDate: '',
@@ -11,29 +11,29 @@ const tripData = {
     tripDuration: 0
 };
 
-// الدالة الرئيسية للتعامل مع إرسال البيانات
+// Main function to handle form submission
 const handleSubmit = async (event) => {
-    event.preventDefault();
+    event.preventDefault(); // Prevent the form from reloading the page
 
-    // تحديث بيانات الرحلة
+    // Update trip data from input fields
     tripData.destination = document.getElementById('destination').value;
     tripData.startDate = document.getElementById('date').value;
     tripData.endDate = document.getElementById('endDate').value;
 
-    // حساب مدة الرحلة
+    // Calculate trip duration in days
     tripData.tripDuration = (new Date(tripData.endDate) - new Date(tripData.startDate)) / (1000 * 60 * 60 * 24);
 
-    // إظهار مؤشر التحميل
+    // Show loading indicator
     document.getElementById('loader').style.display = 'block';
 
     try {
-        // جلب بيانات الطقس باستخدام axios
+        // Fetch weather data using axios
         const weatherResponse = await axios.post('http://localhost:8000/getWeather', {
             destination: tripData.destination
         });
         const weatherData = weatherResponse.data;
 
-        // تحديث معلومات الطقس في الصفحة
+        // Update page with fetched weather data
         if (weatherData) {
             tripData.temp = weatherData.temp;
             tripData.description = weatherData.description;
@@ -41,13 +41,13 @@ const handleSubmit = async (event) => {
             document.getElementById('description').innerText = `Description: ${tripData.description}`;
         }
 
-        // جلب صورة الوجهة باستخدام axios
+        // Fetch destination image using axios
         const imageResponse = await axios.post('http://localhost:8000/getImage', {
             destination: tripData.destination
         });
         const imageData = imageResponse.data;
 
-        // عرض الصورة في الصفحة
+        // Display the image in the UI or alert if not found
         if (imageData.image) {
             tripData.image = imageData.image;
             document.getElementById('destinationImage').src = tripData.image;
@@ -56,18 +56,19 @@ const handleSubmit = async (event) => {
             alert('Image not found for this destination.');
         }
 
-        // عرض مدة الرحلة
+        // Display trip duration in the UI
         document.getElementById('tripDuration').innerText = `Your trip is ${tripData.tripDuration} days long.`;
 
     } catch (error) {
+        // Log error and display error message in UI
         console.log('Error:', error);
         document.getElementById('error').style.display = 'block';
         document.getElementById('error').innerText = 'An error occurred while fetching data.';
     } finally {
-        // إخفاء مؤشر التحميل
+        // Hide loading indicator once the process is complete
         document.getElementById('loader').style.display = 'none';
     }
 };
 
-// تصدير الدالة لتُستخدم في index.js
+// Export the handleSubmit function for use in index.js
 export { handleSubmit };

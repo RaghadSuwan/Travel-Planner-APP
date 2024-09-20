@@ -3,52 +3,73 @@
 <html lang="en">
 
 <head>
+    <!-- Meta tags for character encoding, viewport settings, keywords, and author information -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="keywords" content="travel app, journey, Raghad Suwan">
+    <meta name="keywords" content="travel app, udacity, Raghad Suwan">
     <meta name="author" content="Raghad Suwan">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Title of the webpage -->
     <title>Travel Planner-Raghad Suwan</title>
 </head>
 
 <body>
+    <!-- Main container to wrap the form and content -->
     <div class="container">
+        <!-- Main heading of the webpage -->
         <h1>Travel Planner-Raghad Suwan</h1>
+
+        <!-- Form for user input, containing destination and trip dates -->
         <form id="travelForm" method="post">
+            <!-- Destination input field -->
             <label for="destination">Enter your travel destination:</label>
             <input type="text" id="destination" name="destination" placeholder="e.g., Paris" required />
 
+            <!-- Start date input field -->
             <label for="date">Enter your trip start date:</label>
             <input type="date" id="date" name="date" required />
 
+            <!-- End date input field -->
             <label for="endDate">Enter your trip end date:</label>
             <input type="date" id="endDate" name="endDate" required />
 
+            <!-- Submit button to send form data -->
             <button type="submit" value="Submit">Get Weather and Image</button>
         </form>
     </div>
+
+    <!-- Section to display error messages if any -->
     <div id="error" style="display: none;"></div>
+
+    <!-- Section for displaying search results -->
     <div id="results">
         <h2>Search Results:</h2>
+
+        <!-- Loading indicator while data is being fetched -->
         <div id="loader" style="display: none;">Loading...</div>
+
+        <!-- Weather information display -->
         <h3>Expected Weather:</h3>
         <ul id="weatherInfo">
             <li id="temp"></li>
             <li id="description"></li>
         </ul>
 
-
+        <!-- Destination image display -->
         <h3>Destination Image:</h3>
         <div id="imageContainer">
             <img id="destinationImage" src="" alt="Destination Image" style="max-width: 100%; height: auto;">
         </div>
 
+        <!-- Trip duration display -->
         <h3>Trip Duration:</h3>
         <p id="tripDuration"></p>
     </div>
+
+    <!-- Footer with a link to the author’s LinkedIn profile -->
     <footer>
         <a href="https://www.linkedin.com/in/raghad-suwan/" target="_blank">Crafted with dedication by Raghad Suwan</a>
     </footer>
+
     <script>
         // Register the service worker if supported by the browser
         if ('serviceWorker' in navigator) {
