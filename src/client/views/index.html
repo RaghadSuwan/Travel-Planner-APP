@@ -24,7 +24,7 @@
             <label for="endDate">Enter your trip end date:</label>
             <input type="date" id="endDate" name="endDate" required />
 
-            <button type="submit" value="Submit">Get Weather and Images</button>
+            <button type="submit" value="Submit">Get Weather and Image</button>
         </form>
     </div>
     <div id="error" style="display: none;"></div>
@@ -49,6 +49,16 @@
     <footer>
         <a href="https://www.linkedin.com/in/raghad-suwan/" target="_blank">Crafted with dedication by Raghad Suwan</a>
     </footer>
+    <script>
+        // Register the service worker if supported by the browser
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(registration => console.log("Service worker registered:", registration))
+                    .catch(error => console.error("Service worker registration failed:", error));
+            });
+        }
+    </script>
 </body>
 
 </html>
