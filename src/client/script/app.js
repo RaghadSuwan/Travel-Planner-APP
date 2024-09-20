@@ -1,14 +1,27 @@
 import axios from 'axios'; // استيراد axios
 
+// كائن رئيسي يحتوي على القيم الافتراضية للرحلة
+const tripData = {
+    destination: '',
+    startDate: '',
+    endDate: '',
+    temp: '',
+    description: '',
+    image: '',
+    tripDuration: 0
+};
+
+// الدالة الرئيسية للتعامل مع إرسال البيانات
 const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const destination = document.getElementById('destination').value;
-    const startDate = document.getElementById('date').value;
-    const endDate = document.getElementById('endDate').value;
+    // تحديث بيانات الرحلة
+    tripData.destination = document.getElementById('destination').value;
+    tripData.startDate = document.getElementById('date').value;
+    tripData.endDate = document.getElementById('endDate').value;
 
     // حساب مدة الرحلة
-    const tripDuration = (new Date(endDate) - new Date(startDate)) / (1000 * 60 * 60 * 24);
+    tripData.tripDuration = (new Date(tripData.endDate) - new Date(tripData.startDate)) / (1000 * 60 * 60 * 24);
 
     // إظهار مؤشر التحميل
     document.getElementById('loader').style.display = 'block';
@@ -16,32 +29,35 @@ const handleSubmit = async (event) => {
     try {
         // جلب بيانات الطقس باستخدام axios
         const weatherResponse = await axios.post('http://localhost:8000/getWeather', {
-            destination
+            destination: tripData.destination
         });
         const weatherData = weatherResponse.data;
 
         // تحديث معلومات الطقس في الصفحة
         if (weatherData) {
-            document.getElementById('temp').innerText = `Temperature: ${weatherData.temp}°C`;
-            document.getElementById('description').innerText = `Description: ${weatherData.description}`;
+            tripData.temp = weatherData.temp;
+            tripData.description = weatherData.description;
+            document.getElementById('temp').innerText = `Temperature: ${tripData.temp}°C`;
+            document.getElementById('description').innerText = `Description: ${tripData.description}`;
         }
 
         // جلب صورة الوجهة باستخدام axios
         const imageResponse = await axios.post('http://localhost:8000/getImage', {
-            destination
+            destination: tripData.destination
         });
         const imageData = imageResponse.data;
 
         // عرض الصورة في الصفحة
         if (imageData.image) {
-            document.getElementById('destinationImage').src = imageData.image;
+            tripData.image = imageData.image;
+            document.getElementById('destinationImage').src = tripData.image;
         } else {
             document.getElementById('destinationImage').src = '';
             alert('Image not found for this destination.');
         }
 
         // عرض مدة الرحلة
-        document.getElementById('tripDuration').innerText = `Your trip is ${tripDuration} days long.`;
+        document.getElementById('tripDuration').innerText = `Your trip is ${tripData.tripDuration} days long.`;
 
     } catch (error) {
         console.log('Error:', error);
@@ -53,4 +69,5 @@ const handleSubmit = async (event) => {
     }
 };
 
+// تصدير الدالة لتُستخدم في index.js
 export { handleSubmit };
