@@ -1,36 +1,36 @@
-const { merge } = require("webpack-merge");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const TerserPlugin = require("terser-webpack-plugin");
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
-const common = require("./webpack.common.js");
-const WorkboxPlugin = require('workbox-webpack-plugin'); // Import Workbox for PWA
-const path = require("path");
+const { merge } = require("webpack-merge"); // Import merge function to combine configurations
+const MiniCssExtractPlugin = require("mini-css-extract-plugin"); // Import plugin to extract CSS into separate files
+const TerserPlugin = require("terser-webpack-plugin"); // Import plugin to minimize JavaScript
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin"); // Import plugin to minimize CSS
+const common = require("./webpack.common.js"); // Import common configuration
+const WorkboxPlugin = require('workbox-webpack-plugin'); // Import Workbox for PWA support
+const path = require("path"); // Import path module for handling file paths
 
 module.exports = merge(common, {
-    mode: "production", // Production mode for optimized output
-    devtool: "hidden-source-map", // Source maps without revealing code
+    mode: "production", // Set mode to production for optimized output
+    devtool: "hidden-source-map", // Enable source maps without exposing source code
 
     output: {
-        filename: 'bundle.[contenthash].js', // Output with content hash
-        path: path.resolve(__dirname, 'dist'), // Output directory
-        clean: true, // Clean before build
+        filename: 'bundle.[contenthash].js', // Output filename with content hash for cache busting
+        path: path.resolve(__dirname, 'dist'), // Output directory for the bundle
+        clean: true, // Clean the output directory before each build
     },
 
     optimization: {
-        minimize: true, // Enable minimization
+        minimize: true, // Enable minimization of output files
         minimizer: [
-            new TerserPlugin(), // Minimize JavaScript
-            new CssMinimizerPlugin() // Minimize CSS
+            new TerserPlugin(), // Use TerserPlugin to minimize JavaScript
+            new CssMinimizerPlugin() // Use CssMinimizerPlugin to minimize CSS
         ],
     },
 
     plugins: [
         new MiniCssExtractPlugin({
-            filename: 'style.[contenthash].css' // Extracted CSS file
+            filename: 'style.[contenthash].css' // Extracted CSS filename with content hash
         }),
-        new WorkboxPlugin.GenerateSW({ // Generate service worker
-            clientsClaim: true, // Claim clients immediately
-            skipWaiting: true, // Activate new service worker immediately
+        new WorkboxPlugin.GenerateSW({ // Generate a service worker for caching
+            clientsClaim: true, // Claim existing clients immediately
+            skipWaiting: true, // Activate the new service worker immediately
         })
     ]
 });
