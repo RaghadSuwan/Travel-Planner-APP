@@ -4,15 +4,15 @@ const { merge } = require("webpack-merge"); // Import merge function to combine 
 const path = require("path"); // Import path module for handling file paths
 
 module.exports = merge(common, {
-    mode: "development", // Set mode to development for easier debugging
+    mode: "development", // Set mode to development for better debugging
     devtool: "source-map", // Enable source maps for better error tracking
     devServer: {
         static: path.resolve(__dirname, 'dist'), // Serve static files from the 'dist' directory
-        port: 8080, // Set the development server port
+        port: 8080, // Development server port
         hot: true, // Enable hot module replacement for live updates
         open: true, // Automatically open the browser when the server starts
         client: {
-            overlay: true, // Show errors/warnings as an overlay in the browser
+            overlay: true, // Display errors/warnings as an overlay in the browser
         },
     },
     output: {
