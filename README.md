@@ -22,6 +22,12 @@ cd Travel-Planner
 ```
 
 ### 3. Install Dependencies:
+Before installing dependencies, ensure you are using Node.js version 20.10.0:
+```bash
+nvm install 20.10.0
+nvm use 20.10.0
+```
+Now, install the project dependencies:
 ```bash
 npm install
 ```
@@ -35,9 +41,9 @@ You'll need API keys from:
 
 Create a `.env` file in the root directory with the following content:
 ```plaintext
-geonamesKey=your_geonames_key
-pixabayKey=your_pixabay_key
-weatherbitKey=your_weatherbit_key
+GEONAMES_USERNAME=your_geonames_key
+PIXABAY_API_KEY=your_pixabay_key
+WEATHERBIT_API_KEY=your_weatherbit_key
 ```
 
 ### 5. Start the Server:
@@ -58,9 +64,9 @@ The app will launch in your default browser, and you can start planning your nex
 - **Webpack**: Bundles everything into clean, efficient code.
 - **SCSS**: For structured, stylish CSS.
 
-💬 Get In Touch
-Let's connect! Feel free to reach out to me on [LinkedIn]
- (https://www.linkedin.com/in/raghad-suwan/) for updates and exciting new projects!
+## 💬 Get In Touch
+
+Let's connect! Feel free to reach out to me on [LinkedIn](https://www.linkedin.com/in/raghad-suwan/) for updates and exciting new projects!
 
 Happy travels and happy coding! 🌍🚀
 
